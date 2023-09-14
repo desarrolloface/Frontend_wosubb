@@ -7,6 +7,8 @@
 - [React Native Paper](https://callstack.github.io/react-native-paper/)
 - [Formik](https://formik.org/)
 
+## APK en carpeta apk
+
 ## Primeros pasos
 
 A continuacion se encuentran las intrucciones que permitiran hacer correr el proyecto en su ordenador.

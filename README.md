@@ -52,7 +52,7 @@ npm install
 Iniciar el front
 
 ```bash
-expo start
+npx expo start
 ```
 
 Crear APK

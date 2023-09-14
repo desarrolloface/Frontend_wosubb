@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "WOSUBB",
+    "slug": "WOSUBB",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/LOGO.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.desarrolloface.WOSUBB",
+      "runtimeVersion": "1.0.0"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4f1bd615-4b4c-4b95-8e7c-8e0965564cfa"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4f1bd615-4b4c-4b95-8e7c-8e0965564cfa"
+    }
+  }
+}

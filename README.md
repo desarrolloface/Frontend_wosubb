@@ -23,7 +23,7 @@ Clonar el repositorio
 git clone https://github.com/desarrolloface/Frontend_wosubb.git
 ```
 
-Ingresa a la capeta
+Ingresar a la capeta
 
 ```bash
 cd Frontend_wosubb

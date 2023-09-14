@@ -48,7 +48,7 @@ Iniciar el front
 npx expo start
 ```
 
-Crear APK (Se requiere iniciar sesión a expo.dev con con el mismo correo y contraseña de esta cuenta de github)
+Crear APK (Se requiere iniciar sesión a expo.dev con con el correo y contraseña de desarrolloface)
 
 - Comando para iniciar sesión
 

@@ -7,6 +7,8 @@
 - [React Native Paper](https://callstack.github.io/react-native-paper/)
 - [Formik](https://formik.org/)
 
+## APK en carpeta apk
+
 ## Primeros pasos
 
 A continuacion se encuentran las intrucciones que permitiran hacer correr el proyecto en su ordenador.
@@ -23,7 +25,7 @@ Clonar el repositorio
 git clone https://github.com/desarrolloface/Frontend_wosubb.git
 ```
 
-Ingresa a la capeta
+Ingresar a la capeta
 
 ```bash
 cd Frontend_wosubb

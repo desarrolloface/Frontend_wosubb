@@ -1,12 +1,5 @@
 # WOSUBB frontend
 
-## Construido con
-
-- [React Native](https://reactnative.dev/)
-- [Javascript](https://www.javascript.com/)
-- [React Native Paper](https://callstack.github.io/react-native-paper/)
-- [Formik](https://formik.org/)
-
 ## APK en carpeta apk
 
 ## Primeros pasos

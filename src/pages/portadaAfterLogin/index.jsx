@@ -48,7 +48,7 @@ export default function PortadaAfterLogin({navigation, setPortadaAfterLogin}){
             if (status !== 'granted') {
               return false;
             }
-            let location = await Location.getCurrentPositionAsync({});
+            let location = await Location.getLastKnownPositionAsync({});
             dispatch(guardarUbicacionRedux(location));
             return true; 
       }

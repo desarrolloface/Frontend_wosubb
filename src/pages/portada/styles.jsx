@@ -43,10 +43,9 @@ const styles = StyleSheet.create({
         marginBottom: '25%'
     },
     imegen:{
-        width: '10%',
-        height: '42%',
-        marginHorizontal: '1%',
-        padding:'6.5%'
+        width: 50,
+        height: 85,
+        marginHorizontal: '1.5%',
         //marginTop: '1%'
     },
 })

@@ -148,7 +148,7 @@ export default function Portada({navigation}){
                  return false;
               }
               
-              let location = await Location.getCurrentPositionAsync({});
+              let location = await Location.getLastKnownPositionAsync({});
               dispatch(guardarUbicacionRedux(location));
               return true;
        }

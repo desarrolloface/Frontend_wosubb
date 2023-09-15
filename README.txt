@@ -2,12 +2,12 @@
 
 ## APK en carpeta apk listo para desacargar e instalar en un dispositivo android
 
-Para installar el apk solo debe instalarlo en su dispositivo android y estar en la red wifi de la universidad o mediante vpn de la universidad
+El apk solo debe instalarlo en su dispositivo android y estar en la red wifi de la universidad o mediante vpn de la universidad para usar la aplicación.
 
 Tenga en cuenta que debe dar permisos de instalar aplicaciones de terceros en su dispositivo para instalar el apk ya que no se encuentra en
 google play
 
-## .aab en carpeta abb listo para ser subido a google play store
+## .aab en carpeta abb listo para subir a google play store
 
 ## Primeros pasos para ejecutar codigo del proyecto
 
@@ -72,15 +72,17 @@ eas login
 ```bash
 eas build -p android --profile preview
 ```
+
 ## Si se desea crear .aab debe eliminar archivo eas.json y generar uno nuevo con el siguiente Comando
 
 ```bash
 eas build:configure
 ```
 
-- para crear .aab 
+- para crear .aab
 
 ```bash
 eas build
 ```
-- luego debe seleccionar la plataforma Android en el terminal y se generará la el archivo .aab 
+
+- luego debe seleccionar la plataforma Android en el terminal y se generará la el archivo .aab

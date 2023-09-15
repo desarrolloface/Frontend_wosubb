@@ -60,14 +60,3 @@ eas login
 ```bash
 eas build -p android --profile preview
 ```
-
-- Si se quiere publicar en Play Store no se debe crear un apk, si no que un archivo .aab, para esto se debe borrar el archivo eas.js y realizar el siguiente comando
-
-```bash
-eas build:configure
-```
-- Esto realizara un nuevo archivo eas.js, con este nuevo archivo ya se puede crear un archivo .aab para subir a Play Store
-
-```bash
-eas build --profile android
-```

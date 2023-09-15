@@ -1,8 +1,15 @@
 # WOSUBB frontend
 
-## APK en carpeta apk listo para usar
+## APK en carpeta apk listo para desacargar e instalar en un dispositivo android
 
-## Primeros pasos
+Para installar el apk solo debe instalarlo en su dispositivo android y estar en la red wifi de la universidad o mediante vpn de la universidad
+
+Tenga en cuenta que debe dar permisos de instalar aplicaciones de terceros en su dispositivo para instalar el apk ya que no se encuentra en
+google play
+
+## .aab en carpeta abb listo para ser subido a google play store
+
+## Primeros pasos para ejecutar codigo del proyecto
 
 A continuacion se encuentran las intrucciones que permitiran hacer correr el proyecto en su ordenador.
 
@@ -52,7 +59,7 @@ Iniciar el front
 npx expo start
 ```
 
-Crear APK (Se requiere iniciar sesión a expo.dev con con el correo y contraseña de desarrolloface)
+## Crear APK (Se requiere iniciar sesión a expo.dev con con el correo y contraseña de desarrolloface)
 
 - Comando para iniciar sesión
 
@@ -65,3 +72,15 @@ eas login
 ```bash
 eas build -p android --profile preview
 ```
+## Si se desea crear .aab debe eliminar archivo eas.json y generar uno nuevo con el siguiente Comando
+
+```bash
+eas build:configure
+```
+
+- para crear .aab 
+
+```bash
+eas build
+```
+- luego debe seleccionar la plataforma Android en el terminal y se generará la el archivo .aab 

@@ -58,7 +58,23 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       marginTop: '10%',
       margin:'1%'
-    } 
+    },
+    containerAlertaCerrarSesion: {
+        marginTop: hp(1),
+        marginBottom: hp(2),
+        justifyContent: 'center',
+        alignItems: "center",
+    },
+    textoAlertaCerrarSesion: {
+        fontSize: wp(5),
+        fontWeight: 'bold'
+    },
+    BotonSi: {
+        paddingHorizontal: '19%',
+        paddingVertical: '3%',
+        backgroundColor: "#0140b1",
+        borderRadius: 15
+    },  
 });
 
 export default styles;

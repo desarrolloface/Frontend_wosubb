@@ -466,7 +466,7 @@ export default function Mapa({handlePressButtons, socket, setIsVisibleTipoAlerta
                             alerta.activa === true && cont < 3? 
                                 i!==0 && alerta.id === alertas[i-1].id ?
                                     (null)
-                                : <MiniAlerta alerta={alerta} setVerAlerta={setAlertaSeleccionada} setAlertaSeleccionada={setVerAlerta} key={i} i={i}>{cont=cont+1}</MiniAlerta>             
+                                : <MiniAlerta alerta={alerta} setVerAlerta={setAlertaSeleccionada} setAlertaSeleccionada={setVerAlerta} mostrarUsuario={mostrarUsuario} key={i} i={i} >{cont=cont+1}</MiniAlerta>              
                             :(null) 
                         )) 
                     ):(

@@ -1,16 +1,18 @@
 import React,{useState} from 'react'
 import { View, Text, TouchableOpacity,} from 'react-native'
-import { Button, Switch } from 'react-native-paper'
+import { Button, Switch, Dialog, Portal, Provider, } from 'react-native-paper'
 import styles from './styles'
 import { editarNotificaciones } from '../../data/usuarios'
 import { guardarUsuarioRedux } from '../../redux/actions/usuarioActions'
 import { useSelector, useDispatch} from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icons from '@expo/vector-icons/FontAwesome5';
+import {Check}  from 'lucide-react-native';
 
 export default function ConfiguracionNotificaciones({navigation, setVisibleConfiguracionNotificaciones}){
     const usuarioRedux = useSelector(state => state.usuario.usuario)
     const [notificaciones, setNotificaciones] = useState(usuarioRedux.notificaciones)
+    const [modal, setModal] = useState(false)
     const dispatch = useDispatch();
 
     const guardarNotificaciones = async () => {
@@ -31,6 +33,7 @@ export default function ConfiguracionNotificaciones({navigation, setVisibleConfi
 
         editarNotificaciones(body).then(async () => {
            dispatch(guardarUsuarioRedux(datosUsuario));
+           setModal(true);
         }).catch((err) => {
             console.log("error al editar notificaciones");
         }); 
@@ -40,6 +43,7 @@ export default function ConfiguracionNotificaciones({navigation, setVisibleConfi
     return(
         
         <View style={styles.containerConfiguracionNotificaciones}>
+            <Provider >
             <View style={{height: '13%', width: '100%', flexDirection: 'row'}}>
                 <TouchableOpacity style={{flex:1, width: '100%', marginTop:'10%', justifyContent: 'center', marginRight: '55%', alignItems: 'center'}} onPress={()=>{setVisibleConfiguracionNotificaciones(false)}}>
                     <Icons name="chevron-left" size={20} color='#ffffff'></Icons>
@@ -65,8 +69,32 @@ export default function ConfiguracionNotificaciones({navigation, setVisibleConfi
                     ><Text style={styles.textoBotonGuardar}>Guardar</Text></Button> : <Button style={styles.botonGuardar} mode="contained" onPress={guardarNotificaciones}
                     ><Text style={styles.textoBotonGuardar}>Guardar</Text></Button>
                 }
-            </View>
- 
+            </View> 
+            
+            <Portal>
+                <Dialog style={{backgroundColor: "white"}} visible={modal} onDismiss={()=>{setVisibleConfiguracionNotificaciones(false)}}>
+                    <Dialog.Content style={{ flex:1,width: '100%', justifyContent: "center", alignItems: 'center', paddingBottom: '20%', paddingTop: '15%'}}>
+                        <View style={{width: '13%',
+                            height: '15%',
+                            padding :'15%',
+                            marginTop: '6%',
+                            justifyContent: "center",
+                            backgroundColor: '#5FC14D',
+                            alignItems: 'center',
+                            borderRadius: 100,}}>
+                            <Check size={40} color='#ffffff'></Check>
+                        </View>   
+                        </Dialog.Content>   
+                        <Dialog.Content style={styles.containerAlertaCerrarSesion}>
+                            <Text style={styles.textoAlertaCerrarSesion}>¡Los cambios se han</Text>
+                            <Text style={styles.textoAlertaCerrarSesion}>realizado con éxito!</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions style={{justifyContent: 'center', alignItems:'center'}}>
+                        <Button style={styles.BotonSi} onPress={()=>{setVisibleConfiguracionNotificaciones(false)}}><Text style={{color: "#ffffff",}}>OK</Text></Button>
+                        </Dialog.Actions>
+                    </Dialog>
+                </Portal>
+            </Provider> 
         </View> 
     )
 }

@@ -106,7 +106,7 @@ export default function Registro({navigation}) {
                               style={styles.textInput}
                               onBlur={handleBlur('apellido')}
                               value={values.apellido}
-                              placeholder="apellido"
+                              placeholder="Apellido"
                               onChangeText={handleChange('apellido')}>
                         </TextInput>
                         {errors.apellido && touched.apellido ? 

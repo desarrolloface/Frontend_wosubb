@@ -100,6 +100,22 @@ const styles = StyleSheet.create({
       alignItems: "center",
       borderRadius: 20, 
    },
+   containerAlertaCerrarSesion: {
+      marginTop: hp(1),
+      marginBottom: hp(2),
+      justifyContent: 'center',
+      alignItems: "center",
+  },
+  textoAlertaCerrarSesion: {
+      fontSize: wp(5),
+      fontWeight: 'bold'
+  },
+  BotonSi: {
+      paddingHorizontal: '19%',
+      paddingVertical: '3%',
+      backgroundColor: "#0140b1",
+      borderRadius: 15
+  },
 })
 
 export default styles;

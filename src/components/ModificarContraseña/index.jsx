@@ -1,5 +1,6 @@
 import React,{useState} from "react"
 import { View, Text, TouchableOpacity, TextInput } from "react-native"
+import { Button, Dialog, Portal, Provider, } from 'react-native-paper'
 import {KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
 import styles from "./styles"
 import {modificarContrasena} from "../../data/usuarios"
@@ -8,11 +9,13 @@ import { Formik } from "formik"
 import Toast from 'react-native-toast-message';
 import { useSelector } from "react-redux";
 import Icons from '@expo/vector-icons/FontAwesome5';
+import {Check}  from 'lucide-react-native';
 
 export default function ModificarContraseña({navigation, setIsVisible}) {
     const [visibleContraActual, setVisibleContraActual] = useState(false)
     const [visibleContraNueva, setVisibleContraNueva] = useState(false)
     const [visibleVerificacionContra, setVisibleVerificacionContra] = useState(false)
+    const [modal, setModal] = useState(false)
     const usuario = useSelector(state => state.usuario.usuario)
 
     const initialValues = {
@@ -23,6 +26,7 @@ export default function ModificarContraseña({navigation, setIsVisible}) {
 
     return (
         <View style={styles.containerModificarContraseña}>
+            <Provider >
             <View style={{height: '13%', width: '100%', flexDirection: 'row'}}>
                 <TouchableOpacity style={{flex:1, width: '100%', marginTop:'10%', justifyContent: 'center', marginRight: '55%', alignItems: 'center'}} onPress={()=>{setIsVisible(false)}}>
                     <Icons name="chevron-left" size={20} color='#ffffff'></Icons>
@@ -45,15 +49,15 @@ export default function ModificarContraseña({navigation, setIsVisible}) {
                     }
                     
                     modificarContrasena(body).then((result) => { 
+                        
                         Toast.show({
                             type: 'success',
                             position: 'Top',
                             text1: 'La contraseña fue modificada.',
                             visibilityTime: 3000,
                             topOffset: 60,
-                        })
-
-                        setIsVisible(false);
+                        }) 
+                        setModal(true);
                     }).catch((err) => {
                        if(err.response.status === 400){
                             Toast.show({
@@ -152,6 +156,31 @@ export default function ModificarContraseña({navigation, setIsVisible}) {
                 )}
             </Formik>     
             </View>
+            
+            <Portal>
+                <Dialog style={{backgroundColor: "white"}} visible={modal} onDismiss={()=>{setIsVisible(false)}}>
+                    <Dialog.Content style={{ flex:1,width: '100%', justifyContent: "center", alignItems: 'center', paddingBottom: '20%', paddingTop: '15%'}}>
+                        <View style={{width: '13%',
+                            height: '15%',
+                            padding :'15%',
+                            marginTop: '6%',
+                            justifyContent: "center",
+                            backgroundColor: '#5FC14D',
+                            alignItems: 'center',
+                            borderRadius: 100,}}>
+                            <Check size={40} color='#ffffff'></Check>
+                        </View>   
+                        </Dialog.Content>   
+                        <Dialog.Content style={styles.containerAlertaCerrarSesion}>
+                            <Text style={styles.textoAlertaCerrarSesion}>¡Los cambios se han</Text>
+                            <Text style={styles.textoAlertaCerrarSesion}>realizado con éxito!</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions style={{justifyContent: 'center', alignItems:'center'}}>
+                        <Button style={styles.BotonSi} onPress={()=>{setIsVisible(false)}}><Text style={{color: "#ffffff",}}>OK</Text></Button>
+                        </Dialog.Actions>
+                    </Dialog>
+                </Portal>
+            </Provider> 
         </View>
     )
 }

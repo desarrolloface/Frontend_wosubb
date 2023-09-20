@@ -1,15 +1,17 @@
 import React,{useState,useRef, useEffect} from "react";
 import { View, Text, Keyboard, TouchableOpacity, TextInput } from "react-native";
 import styles from "./styles";
+import { Button, Dialog, Portal, Provider, } from 'react-native-paper'
 import {validacionCorreo} from "../../utils/validaciones"
 import {modificarTipoUsuario} from "../../data/usuarios"
 import {useSelector} from "react-redux"
 import { Formik } from "formik";
 import Toast  from "react-native-toast-message";
 import Icons from '@expo/vector-icons/FontAwesome5';
-
+import {Check}  from 'lucide-react-native';
 export default function ModificarTipos({navigation, setIsVisible,socket}){
     const [valorSeleccionado, setValorSeleccionado] = useState("Usuario");
+    const [modal, setModal] = useState(false)
     const usuario = useSelector(state => state.usuario.usuario)
 
     const initialValues = {
@@ -32,6 +34,7 @@ export default function ModificarTipos({navigation, setIsVisible,socket}){
     return (
         <View style={styles.containerModificarTipos}>
             {/* ekis */}
+            <Provider >
             <View style={{height: '13%', width: '100%', flexDirection: 'row'}}>
                 <TouchableOpacity style={{flex:1, width: '100%', marginTop:'10%', justifyContent: 'center', marginRight: '55%', alignItems: 'center'}} onPress={()=>{setIsVisible(false)}}>
                     <Icons name="chevron-left" size={20} color='#ffffff'></Icons>
@@ -55,6 +58,7 @@ export default function ModificarTipos({navigation, setIsVisible,socket}){
                             }
     
                             modificarTipoUsuario(body).then(async (result) => {
+                                
                                 Toast.show({
                                     type: "success",
                                     text1: "Usuario modificado con éxito.",
@@ -64,7 +68,8 @@ export default function ModificarTipos({navigation, setIsVisible,socket}){
                                 });
     
                                 await socket.emit("cambioTipo", body)
-                                setIsVisible(false);
+                                setModal(true);
+                                /* setIsVisible(false); */
                                 
                             }).catch((err) => {
                                 if(err.response.status === 404){
@@ -76,6 +81,7 @@ export default function ModificarTipos({navigation, setIsVisible,socket}){
                                         topOffset: 60,
                                     });
                                 }else{
+                                    
                                     Toast.show({
                                         type: "info",
                                         text1: "El usuario ya posee ese tipo.",
@@ -114,7 +120,7 @@ export default function ModificarTipos({navigation, setIsVisible,socket}){
                                 <View style={styles.containerInputCorreo}>
                                     <View style={styles.inputCorreo}>
                                     <TextInput
-                                        style={{marginLeft: '5%'}}
+                                        style={{marginLeft: '5%', color:'#ffffff'}}
                                         placeholder='Correo' 
                                         placeholderTextColor='#ffffff' 
                                         onChangeText={handleChange('correo')}
@@ -143,6 +149,30 @@ export default function ModificarTipos({navigation, setIsVisible,socket}){
                     )}
                 </Formik>
             </View>
+            <Portal>
+                <Dialog style={{backgroundColor: "white"}} visible={modal} onDismiss={()=>{setIsVisible(false)}}>
+                    <Dialog.Content style={{ flex:1,width: '100%', justifyContent: "center", alignItems: 'center', paddingBottom: '20%', paddingTop: '15%'}}>
+                        <View style={{width: '13%',
+                            height: '15%',
+                            padding :'15%',
+                            marginTop: '6%',
+                            justifyContent: "center",
+                            backgroundColor: '#5FC14D',
+                            alignItems: 'center',
+                            borderRadius: 100,}}>
+                            <Check size={40} color='#ffffff'></Check>
+                        </View>   
+                        </Dialog.Content>   
+                        <Dialog.Content style={styles.containerAlertaCerrarSesion}>
+                            <Text style={styles.textoAlertaCerrarSesion}>¡Los cambios se han</Text>
+                            <Text style={styles.textoAlertaCerrarSesion}>realizado con éxito!</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions style={{justifyContent: 'center', alignItems:'center'}}>
+                        <Button style={styles.BotonSi} onPress={()=>{setIsVisible(false)}}><Text style={{color: "#ffffff",}}>OK</Text></Button>
+                        </Dialog.Actions>
+                    </Dialog>
+                </Portal>
+            </Provider> 
         </View>
     )
 

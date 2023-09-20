@@ -4,9 +4,16 @@ import styles from "./styles"
 import IconFA5 from 'react-native-vector-icons/FontAwesome';
 
 
-export default function CarMinidAlerta({alerta, setVerAlerta, setAlertaSeleccionada, i}){
+export default function CarMinidAlerta({alerta, setVerAlerta, setAlertaSeleccionada, mostrarUsuario, i}){
 
     const [collapsed, setCollapsed] = useState(null);
+    /* console.log(alerta); */
+    const initialRegion = ({
+        latitude: alerta.latitude,   
+        longitude: alerta.longitude,        
+        latitudeDelta: 0.001,          
+        longitudeDelta: 0.002,          
+    }) 
     
     const seleccionarAlerta = () => {
         setVerAlerta(alerta)
@@ -41,7 +48,7 @@ export default function CarMinidAlerta({alerta, setVerAlerta, setAlertaSeleccion
         <>  
                 
             <View style={{width:'100%', alignItems: "center"} }>   
-                    <TouchableOpacity style={{backgroundColor: '#f2f5fb', width:'94%', borderRadius: 17, marginVertical: '1%', alignItems: "center", flexDirection: 'row', paddingVertical: '3.8%'}} onPress={() => {setCollapsed(i === collapsed ? null : i);}}>
+                    <TouchableOpacity style={{backgroundColor: '#f2f5fb', width:'94%', borderRadius: 17, marginVertical: '1%', alignItems: "center", flexDirection: 'row', paddingVertical: '3.8%'}} onPress={() => {setCollapsed(i === collapsed ? null : i); mostrarUsuario(initialRegion)}}>
                         
                         <View style={{flex: 2, paddingLeft:'5%', marginRight: '5%'}}>
                             <View style={{flex: 2, marginRight: '5%', flexDirection: 'row'}}>
@@ -51,7 +58,7 @@ export default function CarMinidAlerta({alerta, setVerAlerta, setAlertaSeleccion
                                 <Text style={styles.textoTipo}>{alerta.tipo}</Text>
                             </View>
                             {i === collapsed && (
-                                <Text style={styles.descripcion} numberOfLines={2} >{alerta.descripcion}</Text>    
+                                <Text style={styles.descripcion} numberOfLines={2}>{alerta.descripcion}</Text>     
                             )} 
                         </View>
                         <View style={{flex: 0.5, justifyContent: "center"}}>

@@ -1,13 +1,13 @@
 # WOSUBB frontend
 
-## APK en carpeta apk listo para desacargar e instalar en un dispositivo android
+## APK en Google drive listo para desacargar e instalar en un dispositivo android
 
 Solo debe instalarlo en su dispositivo android y estar en la red wifi de la universidad o mediante vpn de la universidad para usar la aplicación.
 
 Tenga en cuenta que debe dar permisos de instalar aplicaciones de terceros en su dispositivo para instalar el apk ya que no se encuentra en
 google play
 
-## .aab en carpeta abb listo para subir a google play store
+## .aab también en Google drive listo para subir a google play store
 
 ## Primeros pasos para ejecutar codigo del proyecto
 

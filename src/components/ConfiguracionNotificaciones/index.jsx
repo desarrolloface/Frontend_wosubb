@@ -8,6 +8,7 @@ import { useSelector, useDispatch} from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icons from '@expo/vector-icons/FontAwesome5';
 import {Check}  from 'lucide-react-native';
+import * as Animatable from 'react-native-animatable';
 
 export default function ConfiguracionNotificaciones({navigation, setVisibleConfiguracionNotificaciones}){
     const usuarioRedux = useSelector(state => state.usuario.usuario)
@@ -63,13 +64,18 @@ export default function ConfiguracionNotificaciones({navigation, setVisibleConfi
                 </View>
                 
             </View>
-            <View style={styles.containerBoton}>
-                {
-                    usuarioRedux.notificaciones === notificaciones ? <Button style={[styles.botonGuardar, {backgroundColor: "#E5E5E5"}]} mode="contained" onPress={guardarNotificaciones} disabled={true}
-                    ><Text style={styles.textoBotonGuardar}>Guardar</Text></Button> : <Button style={styles.botonGuardar} mode="contained" onPress={guardarNotificaciones}
-                    ><Text style={styles.textoBotonGuardar}>Guardar</Text></Button>
-                }
-            </View> 
+            {
+                usuarioRedux.notificaciones !== notificaciones ? <Animatable.View animation='fadeInDown' style={styles.containerBoton}>
+                
+                <Button style={styles.botonGuardar} mode="contained" onPress={guardarNotificaciones}>
+                    <Text style={styles.textoBotonGuardar}>Guardar</Text>
+                </Button>  
+                
+                
+                </Animatable.View>
+                :(null)
+            }
+            
             
             <Portal>
                 <Dialog style={{backgroundColor: "white"}} visible={modal} onDismiss={()=>{setVisibleConfiguracionNotificaciones(false)}}>
